@@ -3,6 +3,8 @@ package com.example.order.item;
 import java.text.ParseException;
 import java.util.Locale;
 
+import com.example.order.domain.Item;
+import com.example.order.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;

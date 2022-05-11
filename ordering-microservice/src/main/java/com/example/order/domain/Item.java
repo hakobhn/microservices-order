@@ -1,4 +1,4 @@
-package com.example.order.item;
+package com.example.order.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

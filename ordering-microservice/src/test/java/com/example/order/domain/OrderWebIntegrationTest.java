@@ -1,4 +1,4 @@
-package com.example.order.logic;
+package com.example.order.domain;
 
 import static org.junit.Assert.*;
 
@@ -6,6 +6,7 @@ import java.util.stream.StreamSupport;
 
 import com.example.order.customer.Customer;
 import com.example.order.customer.CustomerRepository;
+import com.example.order.repository.OrderRepository;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
@@ -24,8 +25,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.example.order.OrderApp;
-import com.example.order.item.Item;
-import com.example.order.item.ItemRepository;
+import com.example.order.repository.ItemRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OrderApp.class, webEnvironment = WebEnvironment.RANDOM_PORT)

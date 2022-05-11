@@ -1,7 +1,8 @@
-package com.example.order.item;
+package com.example.order.repository;
 
 import java.util.List;
 
+import com.example.order.domain.Item;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;

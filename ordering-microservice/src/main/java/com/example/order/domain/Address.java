@@ -1,4 +1,4 @@
-package com.example.order.logic;
+package com.example.order.domain;
 
 import javax.persistence.Embeddable;
 

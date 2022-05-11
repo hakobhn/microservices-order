@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.greaterThan;
 import static org.hamcrest.Matchers.is;
 
 import com.example.order.OrderTestDataGenerator;
-import com.example.order.logic.OrderService;
+import com.example.order.service.OrderService;
 import org.junit.ClassRule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +26,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.testcontainers.containers.KafkaContainer;
 
 import com.example.order.OrderApp;
+import org.testcontainers.utility.DockerImageName;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = OrderApp.class, webEnvironment = WebEnvironment.NONE)
@@ -35,8 +36,11 @@ public class OrderKafkaTest {
 
 	public static Logger logger = LoggerFactory.getLogger(OrderKafkaTest.class);
 
+	private static final DockerImageName KAFKA_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-kafka:6.2.1");
+	private static final DockerImageName ZOOKEEPER_TEST_IMAGE = DockerImageName.parse("confluentinc/cp-zookeeper:4.0.0");
+
 	@ClassRule
-	public static KafkaContainer kafkaContainer = new KafkaContainer();
+	public static KafkaContainer kafkaContainer = new KafkaContainer(KAFKA_TEST_IMAGE);
 
 	@Autowired
 	private KafkaListenerBean kafkaListenerBean;

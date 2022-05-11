@@ -3,15 +3,15 @@ package com.example.order;
 import javax.annotation.PostConstruct;
 
 import com.example.order.customer.CustomerRepository;
-import com.example.order.logic.Address;
-import com.example.order.logic.Order;
-import com.example.order.logic.OrderRepository;
+import com.example.order.domain.Address;
+import com.example.order.domain.Order;
+import com.example.order.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import com.example.order.item.ItemRepository;
+import com.example.order.repository.ItemRepository;
 
 @Component
 @Profile("test")

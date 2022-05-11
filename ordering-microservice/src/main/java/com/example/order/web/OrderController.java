@@ -1,8 +1,11 @@
-package com.example.order.logic;
+package com.example.order.web;
 
 import com.example.order.customer.Customer;
 import com.example.order.customer.CustomerRepository;
-import com.example.order.item.Item;
+import com.example.order.domain.Item;
+import com.example.order.domain.Order;
+import com.example.order.repository.OrderRepository;
+import com.example.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.order.item.ItemRepository;
+import com.example.order.repository.ItemRepository;
 
 @Controller
 class OrderController {

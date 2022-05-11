@@ -20,41 +20,29 @@ services:
     ports:
      - "8080:80"
   postgres:
-    image: postgres:14.1-alpine
-    restart: always
+    build: postgres
     environment:
-      - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpass
-    ports:
-      - '5434:5432'
-    volumes:
-      - ../.data/db:/var/lib/postgresql/data
-      - ./postgres/init-db.sql:/docker-entrypoint-initdb.d/create_dbs.sql
+      POSTGRES_PASSWORD: dbpass
+      POSTGRES_USER: dbuser
   order:
-    image: hakobhn/microservice-order-ordering:1.0.0
-    restart: always
+    build: ../ordering-microservice
     links:
      - kafka
      - postgres
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
   shipping:
-    image: hakobhn/microservice-order-shipping:1.0.0
-    restart: always
+    build: ../shipping-microservice
     links:
      - kafka
      - postgres
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
   invoicing:
-    image: hakobhn/microservice-order-invoicing:1.0.0
-    restart: always
+    build: ../invoicing-microservice
     links:
      - kafka
      - postgres
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:9092
 
-volumes:
-  postgres:
-    driver: local

@@ -1,4 +1,4 @@
-package com.example.order.logic;
+package com.example.order.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,8 +20,6 @@ import com.example.order.customer.Customer;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
-
-import com.example.order.item.Item;
 
 @Entity
 @Table(name = "ORDERTABLE")

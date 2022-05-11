@@ -2,6 +2,8 @@ package com.example.order.item;
 
 import javax.annotation.PostConstruct;
 
+import com.example.order.domain.Item;
+import com.example.order.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

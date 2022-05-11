@@ -1,7 +1,8 @@
-package com.example.order.logic;
+package com.example.order.domain;
 
 import static org.junit.Assert.*;
 
+import com.example.order.repository.OrderRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

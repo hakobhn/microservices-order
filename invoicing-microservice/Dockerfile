@@ -4,7 +4,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 
-FROM openjdk:11-jdk-alpine AS prod-stage
+FROM openjdk:11.0.2-jre-slim AS prod-stage
 COPY --from=build-stage /app/target/*.jar /usr/local/lib/app.jar
 EXPOSE 8080
 ENTRYPOINT ["java","-jar","-Dspring.profiles.active=prod","/usr/local/lib/app.jar"]

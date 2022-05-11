@@ -1,7 +1,8 @@
-package com.example.order.logic;
+package com.example.order.repository;
 
 import java.util.Date;
 
+import com.example.order.domain.Order;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;

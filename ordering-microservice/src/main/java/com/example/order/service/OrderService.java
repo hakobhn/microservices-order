@@ -1,7 +1,9 @@
-package com.example.order.logic;
+package com.example.order.service;
 
 import java.util.Date;
 
+import com.example.order.domain.Order;
+import com.example.order.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;

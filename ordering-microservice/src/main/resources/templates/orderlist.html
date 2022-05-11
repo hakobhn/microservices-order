@@ -30,7 +30,8 @@
 					<td th:text="${order.totalPrice()}">42.0</td>
 					<td><form th:action="'/order/'+${order.id}" th:method="delete">
 							<input type="submit" value="delete" class="btn btn-link" />
-						</form></td>
+						</form>
+					</td>
 				</tr>
 			</tbody>
 		</table>
