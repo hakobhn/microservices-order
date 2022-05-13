@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoice
+  labels:
+    name: invoice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoice
+  template:
+    metadata:
+      labels:
+        app: invoice
+    spec:
+      containers:
+        - name: node
+          image: hakobhn/microservice-order-invoicing:1.0.0
+          env:
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: invoice
+  labels:
+    service: invoice
+spec:
+  selector:
+    app: invoice
+  type: LoadBalancer
+  ports:
+    - port: 8080

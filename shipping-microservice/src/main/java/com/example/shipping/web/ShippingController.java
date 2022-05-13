@@ -1,7 +1,11 @@
 package com.example.shipping.web;
 
+import com.example.shipping.domain.Address;
+import com.example.shipping.domain.Customer;
+import com.example.shipping.domain.Shipment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,4 +34,12 @@ public class ShippingController {
 		return new ModelAndView("shipmentlist", "shipments", shipmentRepository.findAll());
 	}
 
+//	@RequestMapping(value = "/test", method = RequestMethod.GET)
+//	public ResponseEntity<?> test() {
+//		Shipment shipment = new Shipment();
+//		shipment.setCustomer(new Customer(1, "a", "a"));
+//		shipment.setShippingAddress(new Address("a", "a", "a"));
+//		shipmentRepository.save(shipment);
+//		return ResponseEntity.ok(shipment);
+//	}
 }

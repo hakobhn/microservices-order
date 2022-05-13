@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: shipping
+  labels:
+    name: shipping
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: shipping
+  template:
+    metadata:
+      labels:
+        app: shipping
+    spec:
+      containers:
+        - name: node
+          image: hakobhn/microservice-order-shipping:1.0.0
+          env:
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: shipping
+  labels:
+    service: shipping
+spec:
+  selector:
+    app: shipping
+  type: LoadBalancer
+  ports:
+    - port: 8080

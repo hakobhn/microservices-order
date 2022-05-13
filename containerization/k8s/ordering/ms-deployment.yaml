@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order
+  labels:
+    name: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        - name: node
+          image: hakobhn/microservice-order-ordering:1.0.0
+          env:
+            - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
+              value: "kafka:9092"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order
+  labels:
+    service: order
+spec:
+  selector:
+    app: order
+  type: LoadBalancer
+  ports:
+    - port: 8080

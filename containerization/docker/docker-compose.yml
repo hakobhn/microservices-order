@@ -12,7 +12,7 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_CREATE_TOPICS: "order:5:1"
   apache:
-    build: apache
+    image: hakobhn/microservice-order-apache:1.0.0
     links:
      - order
      - shipping
@@ -20,7 +20,7 @@ services:
     ports:
      - "8080:80"
   postgres:
-    image: postgres:14.1-alpine
+    image: hakobhn/microservice-order-postgres:1.0.0
     restart: always
     environment:
       - POSTGRES_USER=dbuser
@@ -28,8 +28,7 @@ services:
     ports:
       - '5434:5432'
     volumes:
-      - ../.data/db:/var/lib/postgresql/data
-      - ./postgres/init-db.sql:/docker-entrypoint-initdb.d/create_dbs.sql
+      - ../../.data/db/postgres-docker:/var/lib/postgresql/data
   order:
     image: hakobhn/microservice-order-ordering:1.0.0
     restart: always

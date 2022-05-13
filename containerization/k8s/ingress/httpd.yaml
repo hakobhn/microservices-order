@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: httpd-app
+  labels:
+    app: httpd-app
+  namespace: ordering
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpd-app
+  template:
+    metadata:
+      labels:
+        app: httpd-app
+    spec:
+      containers:
+        - name: httpd-img
+          image: hakobhn/microservice-order-apache:1.0.0
+          ports:
+            - containerPort: 80
+              protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpd-service
+  namespace: ordering
+spec:
+  selector:
+    app: httpd-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

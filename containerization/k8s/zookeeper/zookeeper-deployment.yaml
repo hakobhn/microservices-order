@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: zookeeper
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: zookeeper
+    spec:
+      containers:
+        - env:
+          - name: ZOOKEEPER_ID
+            value: "1"
+          - name: ZOOKEEPER_SERVER_1
+            value: zookeeper
+          name: zookeeper
+          image: wurstmeister/zookeeper:3.4.6
+          ports:
+            - containerPort: 2181
