@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
-  labels:
-    name: database
+  namespace: ordering
 spec:
   replicas: 1
   selector:
@@ -21,7 +20,7 @@ spec:
           ports:
             - containerPort: 5432
           volumeMounts:
-            - name:  postgres-pv
+            - name: postgredb
               mountPath: /var/lib/postgresql/data
           env:
             - name: POSTGRES_USER
@@ -36,6 +35,20 @@ spec:
                   key: password
       restartPolicy: Always
       volumes:
-        - name:  postgres-pv
+        - name: postgredb
           persistentVolumeClaim:
             claimName: postgres-pv-claim
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: ordering
+  labels:
+    service: postgres
+spec:
+  type: NodePort
+  ports:
+    - port: 5432
+  selector:
+    app: postgres

@@ -2,20 +2,43 @@ kind: Deployment
 apiVersion: apps/v1
 metadata:
   name: zookeeper
+  namespace: ordering
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      service: zookeeper
   template:
     metadata:
       labels:
-        name: zookeeper
+        service: zookeeper
     spec:
       containers:
-        - env:
-          - name: ZOOKEEPER_ID
-            value: "1"
-          - name: ZOOKEEPER_SERVER_1
-            value: zookeeper
-          name: zookeeper
+        - name: zookeeper
           image: wurstmeister/zookeeper:3.4.6
           ports:
             - containerPort: 2181
+          env:
+          - name: ZOOKEEPER_ID
+            value: "1"
+          - name: ENABLE_CLIENT_SASL_KEY
+            value: "false"
+          - name: ALLOW_ANONYMOUS_LOGIN
+            value: "yes"
+          - name: ZOOKEEPER_SERVER_1
+            value: zookeeper
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: zookeeper
+  namespace: ordering
+  labels:
+    service: zookeeper
+spec:
+  ports:
+    - name: client
+      port: 2181
+      protocol: TCP
+  selector:
+    app: zookeeper

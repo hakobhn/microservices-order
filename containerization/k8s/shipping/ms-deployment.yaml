@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: shipping
+  namespace: ordering
   labels:
     name: shipping
 spec:
@@ -26,11 +27,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: shipping
+  namespace: ordering
   labels:
     service: shipping
 spec:
-  selector:
-    app: shipping
   type: LoadBalancer
   ports:
     - port: 8080
+  selector:
+    app: shipping

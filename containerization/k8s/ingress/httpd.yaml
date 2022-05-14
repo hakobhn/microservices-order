@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: httpd-app
+  namespace: ordering
   labels:
     app: httpd-app
-  namespace: ordering
 spec:
   replicas: 1
   selector:
@@ -28,9 +28,10 @@ metadata:
   name: httpd-service
   namespace: ordering
 spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30002
   selector:
     app: httpd-app
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+  type: LoadBalancer

@@ -1,18 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: invoice
+  name: invoicing
+  namespace: ordering
   labels:
-    name: invoice
+    name: invoicing
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: invoice
+      app: invoicing
   template:
     metadata:
       labels:
-        app: invoice
+        app: invoicing
     spec:
       containers:
         - name: node
@@ -25,12 +26,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: invoice
+  name: invoicing
+  namespace: ordering
   labels:
-    service: invoice
+    service: invoicing
 spec:
-  selector:
-    app: invoice
   type: LoadBalancer
   ports:
     - port: 8080
+  selector:
+    app: invoicing
