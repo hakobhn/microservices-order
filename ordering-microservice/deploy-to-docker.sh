@@ -2,7 +2,7 @@
 
 echo "Deploying to docker"
 $DOCKER_USER="hakobhn"
-$DOCKER_PASS="Piramidananoelq1980"
+$DOCKER_PASS="***"
 $TAG="1.0.0"
 
 echo "Check docker version"
@@ -10,7 +10,7 @@ docker --version
 
 echo "Login to dockerhub"
 docker login -u $DOCKER_USER -p $DOCKER_PASS
-# docker login -u hakobhn -p Piramidananoelq1980
+# docker login -u hakobhn
 
 export REPO=hakobhn/microservice-order-ordering
 

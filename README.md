@@ -1,4 +1,4 @@
-Microservice Kafka Sample
+Microservices deploying with docker and kubernetes sample
 ==================
 
 [Deutsche Anleitung zum Starten des Beispiels](WIE-LAUFEN.md)

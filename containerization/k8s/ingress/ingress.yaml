@@ -6,9 +6,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
+  ingressClassName: nginx
   rules:
-#    - host: ordering.example.com
-    - http:
+    - host: localhost
+      http:
         paths:
           - path: /
             pathType: Prefix
@@ -17,3 +18,24 @@ spec:
                 name: httpd-service
                 port:
                   number: 80
+          - path: /order
+            pathType: Prefix
+            backend:
+              service:
+                name: order
+                port:
+                  number: 8080
+          - path: /invoicing
+            pathType: Prefix
+            backend:
+              service:
+                name: invoicing
+                port:
+                  number: 8080
+          - path: /shipping
+            pathType: Prefix
+            backend:
+              service:
+                name: shipping
+                port:
+                  number: 8080

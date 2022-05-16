@@ -16,7 +16,6 @@ kubectl apply -f ./ingress/ingress.yaml
 
 # Create db
 kubectl apply -f ./postgres/secrets.yaml
-docker volume create postgres-pv
 kubectl apply -f ./postgres/volume.yaml
 kubectl apply -f ./postgres/deployment.yaml
 
@@ -28,5 +27,5 @@ kubectl apply -f ./kafka/kafka-deployment.yaml
 
 # Create microservices
 kubectl apply -f ./invocing/ms-deployment.yaml
-kubectl apply -f ./ordering/ms-deployment.yaml
+kubectl apply -f ./order/ms-deployment.yaml
 kubectl apply -f ./shipping/ms-deployment.yaml
