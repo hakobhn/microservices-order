@@ -17,7 +17,7 @@ kubectl apply -f ./ingress/ingress.yaml
 # Create db
 kubectl apply -f ./postgres/secrets.yaml
 kubectl apply -f ./postgres/volume.yaml
-kubectl apply -f ./postgres/deployment.yaml
+kubectl apply -f ./postgres/postgres-deployment.yaml
 
 
 # Create messaging
