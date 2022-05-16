@@ -24,7 +24,7 @@ services:
     restart: always
     environment:
       - POSTGRES_USER=dbuser
-      - POSTGRES_PASSWORD=dbpass
+      - POSTGRES_PASSWORD=ENC(T0qvVHH/h3oJftq9bwlv3Q==)
     ports:
       - '5434:5432'
     volumes:
