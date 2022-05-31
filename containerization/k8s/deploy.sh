@@ -10,7 +10,7 @@ kubectl create -f ./namespace/namespace.yaml
 #kubectl config use-context ordering
 
 # Create ingress
-kubectl apply -f ./ingress/httpd.yaml
+#kubectl apply -f ./ingress/httpd.yaml
 kubectl apply -f ./ingress/ingress.yaml
 
 
@@ -18,6 +18,7 @@ kubectl apply -f ./ingress/ingress.yaml
 kubectl apply -f ./postgres/secrets.yaml
 kubectl apply -f ./postgres/volume.yaml
 kubectl apply -f ./postgres/postgres-deployment.yaml
+#kubectl port-forward service/postgres 5432:5432 -n ordering
 
 
 # Create messaging

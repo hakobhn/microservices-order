@@ -36,6 +36,7 @@ metadata:
   labels:
     service: zookeeper
 spec:
+  type: ClusterIP
   ports:
     - name: client
       port: 2181

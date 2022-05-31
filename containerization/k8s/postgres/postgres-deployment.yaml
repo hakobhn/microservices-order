@@ -19,6 +19,8 @@ spec:
           imagePullPolicy: "IfNotPresent"
           ports:
             - containerPort: 5432
+              name: pg-port
+              protocol: TCP
           volumeMounts:
             - name: postgredb
               mountPath: /var/lib/postgresql/data
@@ -47,10 +49,11 @@ metadata:
   labels:
     service: postgres
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
-    - protocol: TCP
-      port: 5432
+    - port: 5432
+      name: pg-port
       targetPort: 5432
+      protocol: TCP
   selector:
     app: postgres

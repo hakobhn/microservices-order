@@ -16,11 +16,11 @@ spec:
         app: invoicing
     spec:
       containers:
-        - name: node
+        - name: invoicing-node
           image: hakobhn/microservice-order-invoicing:1.0.0
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
-              protocol: TCP
           env:
             - name: SPRING_KAFKA_BOOTSTRAP_SERVERS
               value: "kafka:9092"
@@ -34,10 +34,11 @@ metadata:
   labels:
     service: invoicing
 spec:
-  ports:
-    - nodePort: 30181
-      port: 8080
-      targetPort: 8080
-  type: LoadBalancer
   selector:
     app: invoicing
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
